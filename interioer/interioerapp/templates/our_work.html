@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="bg-stone-100 py-20 text-center">
+    <h1 class="font-serif text-4xl md:text-5xl mb-4 text-stone-900">Our Portfolio</h1>
+    <p class="text-gray-500 font-light max-w-xl mx-auto">Explore our curated collection of residential and commercial projects across the UK.</p>
+</div>
+
+<section class="max-w-7xl mx-auto px-6 py-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+
+{% for sel in projects %}
+    <div class="flex flex-col bg-white border border-stone-100 shadow-sm hover:shadow-md transition">
+        
+        <div class="relative h-64 overflow-hidden">
+            {% if sel.image %}
+            <img src="{{ sel.image.url }}" class="w-full h-full object-cover">
+            {% endif %}
+        </div>
+
+        <div class="p-6 flex flex-col flex-grow">
+            <span class="text-uk-gold text-[10px] uppercase">
+                {{ sel.completed_date|date:"F Y" }}
+            </span>
+
+            <h3 class="text-xl font-serif">{{ sel.title }}</h3>
+
+            <p class="text-gray-600 text-sm line-clamp-3">
+                {{ sel.description }}
+            </p>
+        </div>
+    </div>
+{% empty %}
+    <div class="col-span-3 text-center py-20">
+        <p class="text-gray-400 italic">No projects added yet.</p>
+    </div>
+{% endfor %}
+
+</div>
+
+        
+         
+    </div>
+</section>
+
+{% endblock %}

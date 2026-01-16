@@ -1,0 +1,100 @@
+/* style.css */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Montserrat:wght@300;400;500&display=swap');
+
+:root {
+    --bg-color: #f9f8f6;
+    --text-color: #2c2c2c;
+    --accent-color: #c5a059;
+    --white: #ffffff;
+    --font-heading: 'Cormorant Garamond', serif;
+    --font-body: 'Montserrat', sans-serif;
+    --transition: all 0.4s ease;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    overflow-x: hidden;
+    padding-bottom: 60px; /* Space for mobile button */
+}
+@media (min-width: 769px) { body { padding-bottom: 0; } }
+
+a { text-decoration: none; color: inherit; transition: var(--transition); }
+img { width: 100%; display: block; }
+ul { list-style: none; }
+
+/* UTILITIES */
+.reveal { opacity: 1; transform: translateY(30px); transition: all 0.8s ease-out; }
+.reveal.active { opacity: 1; transform: translateY(0); }
+
+/* HEADER */
+header {
+    position: fixed; width: 100%; top: 0; z-index: 1000;
+    padding: 15px 5%; display: flex; justify-content: space-between; align-items: center;
+    background: rgba(249, 248, 246, 0.98); border-bottom: 1px solid rgba(0,0,0,0.05); height: 70px;
+}
+.logo { font-family: var(--font-heading); font-size: 1.6rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+
+/* NAV LINKS */
+.nav-menu { display: flex; gap: 40px; align-items: center; }
+.nav-menu a { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 500; }
+.nav-menu a:hover, .nav-menu a.active { color: var(--accent-color); }
+
+/* BUTTONS */
+.desktop-cta {
+    padding: 10px 25px; background-color: var(--text-color); color: var(--white);
+    text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1.5px; border: 1px solid var(--text-color);
+}
+.desktop-cta:hover { background: transparent; color: var(--text-color); }
+
+.mobile-sticky-btn {
+    display: none; position: fixed; bottom: 0; left: 0; width: 100%;
+    background-color: var(--text-color); color: var(--white); text-align: center;
+    padding: 18px; font-size: 1rem; text-transform: uppercase; letter-spacing: 2px;
+    z-index: 2000; font-weight: 500;
+}
+
+/* HAMBURGER */
+.hamburger { display: none; cursor: pointer; z-index: 1001; }
+.bar { display: block; width: 25px; height: 2px; margin: 6px auto; background-color: var(--text-color); transition: 0.3s; }
+
+/* SECTIONS */
+section { padding: 80px 10%; }
+.page-header {
+    height: 50vh; display: flex; align-items: center; justify-content: center; text-align: center;
+    background-color: #e5e5e5; position: relative;
+}
+.page-header h1 { font-family: var(--font-heading); font-size: 3.5rem; position: relative; z-index: 2; color: var(--white); }
+.page-header::after { content:''; position: absolute; inset:0; background: rgba(0,0,0,0.3); }
+
+.section-title h2 { font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 10px; text-align: center; }
+
+/* GRIDS */
+.services-grid, .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
+.card { padding: 30px; background: var(--white); border: 1px solid rgba(0,0,0,0.05); }
+.card h3 { font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 10px; }
+
+/* FORM */
+.contact-form input, .contact-form textarea { width: 100%; padding: 15px; margin-bottom: 15px; border: 1px solid #ccc; background: transparent; font-family: var(--font-body); }
+.contact-form button { width: 100%; padding: 15px; background: var(--text-color); color: var(--white); border: none; text-transform: uppercase; cursor: pointer; }
+
+footer { background: #111; color: #888; padding: 40px 5%; text-align: center; font-size: 0.8rem; margin-top: 50px;}
+
+/* MOBILE CSS */
+@media (max-width: 768px) {
+    header { padding: 0 5%; height: 60px; }
+    .desktop-cta { display: none; }
+    .mobile-sticky-btn { display: block; }
+    .hamburger { display: block; }
+    .nav-menu {
+        position: fixed; left: -100%; top: 60px; flex-direction: column;
+        background-color: var(--bg-color); width: 100%; height: calc(100vh - 60px);
+        padding-top: 50px; transition: 0.3s;
+    }
+    .nav-menu.active { left: 0; }
+    .page-header h1 { font-size: 2.5rem; }
+}

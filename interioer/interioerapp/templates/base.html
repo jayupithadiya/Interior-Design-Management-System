@@ -1,0 +1,112 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Luxe Interiors UK{% endblock %}</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'uk-gold': '#C5A059',
+                        'uk-charcoal': '#1C1C1C',
+                        'uk-beige': '#F5F5F0',
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Lato"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        html { scroll-behavior: smooth; }
+        .project-card:hover .overlay { opacity: 1; }
+        .project-card:hover img { transform: scale(1.05); }
+    </style>
+</head>
+<body class="bg-uk-beige text-uk-charcoal font-sans antialiased flex flex-col min-h-screen">
+
+    <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-md border-b border-stone-200">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="{% url 'home' %}" class="font-serif text-2xl tracking-widest font-bold uppercase">
+                        Luxe<span class="text-uk-gold">.</span>
+                    </a>
+                </div>
+
+                <div class="hidden md:flex space-x-12">
+                    <a href="{% url 'home' %}" class="text-sm uppercase tracking-widest hover:text-uk-gold transition">Home</a>
+                    <a href="{% url 'our_work' %}" class="text-sm uppercase tracking-widest hover:text-uk-gold transition">Our Work</a>
+                    <a href="{% url 'contact' %}" class="text-sm uppercase tracking-widest hover:text-uk-gold transition">Contact</a>
+                </div>
+
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-uk-charcoal focus:outline-none p-2">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full left-0 shadow-lg">
+            <div class="px-6 py-4 flex flex-col space-y-4">
+                <a href="{% url 'home' %}" class="block text-sm uppercase tracking-widest hover:text-uk-gold font-bold">Home</a>
+                <a href="{% url 'our_work' %}" class="block text-sm uppercase tracking-widest hover:text-uk-gold font-bold">Our Work</a>
+                <a href="{% url 'contact' %}" class="block text-sm uppercase tracking-widest hover:text-uk-gold font-bold">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-20 flex-grow">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer class="bg-uk-charcoal text-white py-16 mt-auto">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12">
+            <div>
+                <h3 class="font-serif text-xl mb-6">Luxe Interiors.</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">Defining elegance across the United Kingdom. Bespoke residential and commercial design.</p>
+            </div>
+            <div>
+                <h4 class="uppercase tracking-widest text-xs mb-6 text-uk-gold">Contact</h4>
+                <p class="text-gray-400 text-sm">10 Downing Street, London<br>Email@zolo.com<br>+99 99 9999 9999</p>
+            </div>
+            <div>
+                <h4 class="uppercase tracking-widest text-xs mb-6 text-uk-gold">Follow</h4>
+                <div class="flex space-x-4 text-gray-400">
+                    <a href="#" class="hover:text-white transition">Instagram</a>
+                    <a href="#" class="hover:text-white transition">Pinterest</a>
+                    <a href="#" class="hover:text-white transition">LinkedIn</a>
+                </div>
+            </div>
+        </div>
+        <div class="border-t border-gray-800 mt-12 pt-8 text-center text-xs text-gray-500 uppercase tracking-widest">
+            &copy; 2026 \ RAW  Reserved.
+        </div>
+    </footer>
+
+    <script>
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+    </script>
+
+</body>
+</html>

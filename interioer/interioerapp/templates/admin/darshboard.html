@@ -1,0 +1,138 @@
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h3 class="fw-bold text-dark">Dashboard Overview</h3>
+        <p class="text-muted mb-0">Real-time data from your live website.</p>
+    </div>
+    <div>
+        <button class="btn btn-white border shadow-sm" onclick="loadDashboardData()">
+            <i class="fas fa-sync-alt me-2 text-primary"></i> Refresh Data
+        </button>
+    </div>
+</div>
+
+<div class="row g-4 mb-4">
+    <div class="col-md-3">
+        <div class="card border-0 shadow-sm p-3 h-100">
+            <div class="d-flex align-items-center">
+                <div class="rounded-circle bg-primary bg-opacity-10 p-3 text-primary me-3">
+                    <i class="fas fa-users fa-2x"></i>
+                </div>
+                <div>
+                    <h6 class="text-muted text-uppercase small fw-bold mb-1">Total Visitors</h6>
+                    <h3 class="fw-bold mb-0" id="display-total-visitors">0</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card border-0 shadow-sm p-3 h-100">
+            <div class="d-flex align-items-center">
+                <div class="rounded-circle bg-success bg-opacity-10 p-3 text-success me-3">
+                    <i class="fas fa-file-alt fa-2x"></i>
+                </div>
+                <div>
+                    <h6 class="text-muted text-uppercase small fw-bold mb-1">Active Pages</h6>
+                    <h3 class="fw-bold mb-0" id="display-active-pages">0</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card border-0 shadow-sm p-3 h-100">
+            <div class="d-flex align-items-center">
+                <div class="rounded-circle bg-warning bg-opacity-10 p-3 text-warning me-3">
+                    <i class="fas fa-clock fa-2x"></i>
+                </div>
+                <div>
+                    <h6 class="text-muted text-uppercase small fw-bold mb-1">Avg. Session</h6>
+                    <h3 class="fw-bold mb-0">2m 45s</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card border-0 shadow-sm p-3 h-100">
+            <div class="d-flex align-items-center">
+                <div class="rounded-circle bg-danger bg-opacity-10 p-3 text-danger me-3">
+                    <i class="fas fa-chart-pie fa-2x"></i>
+                </div>
+                <div>
+                    <h6 class="text-muted text-uppercase small fw-bold mb-1">Bounce Rate</h6>
+                    <h3 class="fw-bold mb-0">42%</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card border-0 shadow-sm mb-4">
+    <div class="card-header bg-white py-3">
+        <h5 class="mb-0 fw-bold">Visitor Traffic (Last 7 Days)</h5>
+    </div>
+    <div class="card-body">
+        <canvas id="trafficChart" height="80"></canvas>
+    </div>
+</div>
+
+<div class="row g-4">
+    <div class="col-lg-8">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
+                <h5 class="mb-0 fw-bold">Recent Page Visits</h5>
+                <a href="#" class="btn btn-sm btn-outline-primary">View All</a>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Page Path</th>
+                            <th>Time</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="recent-visits-table">
+                        <tr>
+                            <td colspan="3" class="text-center py-4 text-muted">Loading data...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-header bg-white py-3">
+                <h5 class="mb-0 fw-bold">Device Breakdown</h5>
+            </div>
+            <div class="card-body">
+                <div class="d-flex justify-content-between mb-3">
+                    <span><i class="fas fa-desktop text-secondary me-2"></i> Desktop</span>
+                    <span class="fw-bold">65%</span>
+                </div>
+                <div class="progress mb-4" style="height: 6px;">
+                    <div class="progress-bar bg-primary" role="progressbar" style="width: 65%"></div>
+                </div>
+
+                <div class="d-flex justify-content-between mb-3">
+                    <span><i class="fas fa-mobile-alt text-secondary me-2"></i> Mobile</span>
+                    <span class="fw-bold">25%</span>
+                </div>
+                <div class="progress mb-4" style="height: 6px;">
+                    <div class="progress-bar bg-success" role="progressbar" style="width: 25%"></div>
+                </div>
+
+                <div class="d-flex justify-content-between mb-3">
+                    <span><i class="fas fa-tablet-alt text-secondary me-2"></i> Tablet</span>
+                    <span class="fw-bold">10%</span>
+                </div>
+                <div class="progress" style="height: 6px;">
+                    <div class="progress-bar bg-warning" role="progressbar" style="width: 10%"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

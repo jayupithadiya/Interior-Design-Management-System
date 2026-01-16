@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<section class="relative h-[90vh] flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+        <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=2000&auto=format&fit=crop" 
+             alt="Luxury Interior" 
+             class="w-full h-full object-cover animate-kenburns"> <div class="absolute inset-0 bg-stone-900/40"></div>
+    </div>
+    
+    <div class="relative z-10 text-center px-4">
+        <p class="text-uk-gold uppercase tracking-[0.4em] text-xs font-bold mb-6 animate-fade-in">British Design Aesthetic</p>
+        <h1 class="text-white font-serif text-5xl md:text-7xl mb-8 leading-tight drop-shadow-lg">
+            Timeless Elegance <br> <span class="italic text-stone-200">for Modern Living</span>
+        </h1>
+        <a href="{% url 'contact' %}" class="inline-block bg-white text-uk-charcoal px-10 py-4 uppercase tracking-widest text-xs font-bold hover:bg-uk-gold hover:text-white transition duration-500">
+            Start Your Journey
+        </a>
+    </div>
+</section>
+
+<section class="py-24 max-w-4xl mx-auto px-6 text-center">
+    <span class="text-stone-400 text-xs uppercase tracking-widest">Who We Are</span>
+    <h2 class="font-serif text-3xl md:text-5xl text-stone-800 mt-4 mb-8">Curating Spaces that Inspire</h2>
+    <div class="w-24 h-px bg-uk-gold mx-auto mb-10"></div>
+    <p class="text-gray-600 leading-loose text-lg font-light font-sans">
+        We specialize in creating bespoke interiors that blend the rich heritage of British architecture with contemporary minimalism. From London townhouses to Cotswold cottages, our approach is always personal.
+    </p>
+</section>
+
+<section class="py-20 bg-stone-50">
+    <div class="max-w-7xl mx-auto px-6">
+        
+        <div class="flex justify-between items-end mb-16">
+            <div>
+                <h2 class="font-serif text-4xl text-stone-900">Featured Projects</h2>
+                <p class="text-stone-500 mt-2 font-light">A selection of our finest work.</p>
+            </div>
+            <a href="{% url 'our_work' %}" class="hidden md:block text-xs font-bold uppercase tracking-widest border-b border-stone-900 pb-1 hover:text-uk-gold hover:border-uk-gold transition">
+                View All Projects
+            </a>
+        </div>
+
+        <div class="max-w-4xl mx-auto px-6 py-10">
+
+    {% for sel in alls|slice:":2" %}
+    
+    <a href="{% url 'our_work' %}" class="group block relative overflow-hidden h-96 rounded-lg shadow-lg border border-stone-200"> 
+        
+        <div class="w-full h-full overflow-hidden">
+            {% if sel.image %}
+            <img src="{{ sel.image.url }}" 
+                 alt="{{ sel.title }}" 
+                 class="w-full h-full object-cover transition-transform duration-1000 ease-in-out group-hover:scale-105">
+            {% endif %}
+        </div>
+
+        <div class="absolute inset-0 bg-gradient-to-t from-stone-900/90 via-stone-900/20 to-transparent opacity-80 transition-opacity duration-300"></div>
+
+        <div class="absolute bottom-0 left-0 p-8 w-full flex flex-col justify-end items-start translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+            
+            <span class="text-uk-gold text-[10px] uppercase tracking-widest font-bold mb-2">
+                Featured • {{ sel.completed_date|date:"F Y" }}
+            </span>
+
+            <h3 class="text-white font-serif text-3xl mb-2 group-hover:text-stone-100 transition-colors">
+                {{ sel.title }}
+            </h3>
+            
+            <p class="text-stone-300 text-sm max-w-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-light">
+                {{ sel.description|truncatewords:15 }}
+            </p>
+
+        </div>
+    </a>
+
+    {% empty %}
+    <div class="text-center py-10 text-gray-400 text-sm">
+        No projects available.
+    </div>
+    {% endfor %}
+
+</div>
+
+    </div>
+</section>
+
+{% endblock %}
